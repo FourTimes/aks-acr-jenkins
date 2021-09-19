@@ -4,7 +4,7 @@ node {
     }       
     stage('Build the Image and Push to Azure Container Registry') {                
       app = docker.build('jjino/acr-demo')                
-      withDockerRegistry([credentialsId: 'acr_credentials', url: 'https://registry.hub.docker.com']) {                
+      withDockerRegistry([credentialsId: 'acr_credentials', url: 'https://docker.io']) {                
       app.push("${env.BUILD_NUMBER}")                
       app.push('latest')                
      }        
