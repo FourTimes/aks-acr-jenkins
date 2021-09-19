@@ -3,10 +3,10 @@ node {
       git branch: 'main', credentialsId: 'fourtimesId', url: 'https://github.com/FourTimes/aks-acr-jenkins.git'        
     }       
     stage('Build the Image and Push to Azure Container Registry') {                
-      app = docker.build('testacr.azurecr.io/demo')                
-//       withDockerRegistry([credentialsId: 'acr_credentials', url: 'https://testacr.azurecr.io']) {                
-//       app.push("${env.BUILD_NUMBER}")                
-//       app.push('latest')                
-//      }        
+      app = docker.build('jjino/acr-demo')                
+      withDockerRegistry([credentialsId: 'acr_credentials', url: 'https://registry.hub.docker.com']) {                
+      app.push("${env.BUILD_NUMBER}")                
+      app.push('latest')                
+     }        
     }        
 }
