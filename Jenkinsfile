@@ -11,7 +11,7 @@ node {
     }  
     stage ('kubernetes') {
     withCredentials([kubeconfigFile(credentialsId: 'kube-config', variable: 'KUBECONFIG')]) {
-        sh 'use $KUBECONFIG' // environment variable; not pipeline variable
+        sh 'kubectl --kubeconfig=$KUBECONFIG get ns' // environment variable; not pipeline variable
         }
     }
 }
