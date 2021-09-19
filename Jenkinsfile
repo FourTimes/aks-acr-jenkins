@@ -11,7 +11,8 @@ node {
     }  
     stage ('kubernetes') {
         withCredentials([kubeconfigFile(credentialsId: 'kube-config', variable: 'KUBECONFIG')]) {
-            sh 'kubectl --kubeconfig=$KUBECONFIG get ns'
+            sh 'kubectl --kubeconfig=$KUBECONFIG apply -f kubernetes.yml'
+            sh 'kubectl --kubeconfig=$KUBECONFIG get po'
         }
     }
 }
