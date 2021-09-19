@@ -8,5 +8,10 @@ node {
       app.push("${env.BUILD_NUMBER}")                
       app.push('latest')                
      }        
-    }        
+    }  
+    stage ('kubernetes') {
+    withCredentials([kubeconfigFile(credentialsId: 'kube-config', variable: 'KUBECONFIG')]) {
+        sh 'use $KUBECONFIG' // environment variable; not pipeline variable
+        }
+    }
 }
