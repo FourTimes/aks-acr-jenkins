@@ -1,3 +1,1 @@
 # aks-acr-jenkins
-
-Jenkins
